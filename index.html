@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="initial-scale=1, user-scalable=no, viewport-fit=cover" />
+<link rel="stylesheet" href="stylesheet.css" />
+<title>SVG Downloader</title>
+</head>
+<body>
+<main>
+<p id="error">Error</p>
+<canvas id="preview" width="1000" height="1000">Preview of the SVG</canvas>
+<div id="input">
+<textarea id="code">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<rect width="100" height="100" fill="#fcc" />
+<rect x="5" y="5" width="50" height="50" rx="5" fill="#f99" />
+<rect x="25" y="25" width="50" height="50" rx="5" fill="#f66" />
+<rect x="45" y="45" width="50" height="50" rx="5" fill="#f33" />
+</svg>
+</textarea>
+<div>
+<a id="download" download="svg_downloaded.png">Download</a>
+<input id="width" type="number" min="0" placeholder="width" value="1000" />
+<input id="height" type="number" min="0" placeholder="height" value="1000" />
+</div>
+</div>
+</main>
+
+<script>
+const canvas = document.getElementById("preview");
+const input = document.getElementById("code");
+const width = document.getElementById("width");
+const height = document.getElementById("height");
+const alert = document.getElementById("error");
+const downloader = document.getElementById("download");
+
+let archive;
+
+function drawCanvas() {
+	let svg = input.value;
+	let data = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+	let output = new Image();
+
+	output.src = data;
+
+	output.onerror = function(error) {
+	console.error("An", error.message, "error occured.");
+	output.src = archive;
+	alert.textContent = "error";
+	alert.style.display = "inherit";
+	input.style.borderColor = "var(--red)";
+	};
+
+	if (archive === data) {
+	alert.style.display = "none";
+	input.style.borderColor = "";
+	}
+
+	const ctx = canvas.getContext("2d");
+	output.onload = function() {
+	ctx.reset();
+	ctx.drawImage(output, 0, 0);
+	archive = output.src;
+	};
+};
+
+function renderImage(event) {
+downloader.style.cursor = "wait";
+downloader.href = '#';
+	canvas.toBlob(function(blob) {
+		if (blob) {
+		const imageFile = URL.createObjectURL(blob);
+		downloader.href = imageFile;
+		downloader.style.cursor = "revert";
+	        }
+	});
+};
+
+function changeDimensions() {
+	canvas.width = Math.abs(width.value);
+	canvas.height = Math.abs(height.value);
+	drawCanvas();
+};
+
+	window.onload = drawCanvas;
+	input.addEventListener("input", drawCanvas);
+	width.addEventListener("input", changeDimensions);
+	height.addEventListener("input", changeDimensions);
+	downloader.addEventListener("mouseover", renderImage);
+</script>
+</body>
+</html>

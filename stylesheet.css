@@ -1,0 +1,152 @@
+/* Order: @import, :root, *, Elements, Classes, IDs, Attributes, Selectors, Nesting Selectors, Pseudo-Elements, Pseudo-Classes, At-Rules */
+/* Order: Position, Size, Shape, Color, Function */
+@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100..900&display=swap");
+
+:root {
+	--dark: #036;
+	--medium: #69cc;
+	--light: #9cf;
+	--black: #000;
+	--white: #fff;
+	--red: #f66;
+	--cyan: #06f;
+	overscroll-behavior-y: none;
+	user-select: none;
+}
+
+body {
+	background-color: var(--dark);
+}
+
+* {
+	margin: unset;
+	padding: unset;
+	border: unset;
+	outline: unset;
+	font-family: "Chivo Mono";
+	font-size: 15px;
+	font-variant-ligatures: none;
+	text-decoration: unset;
+	box-sizing: border-box;
+	color: var(--black);
+}
+
+main {
+	margin: 2vw;
+	padding: 2vw;
+	width: 96vw;
+	height: calc(100vh - 4vw);
+	display: flex;
+	align-items: center;
+	gap: 2vw;
+	border-radius: 2vw;
+	background-color: var(--medium);
+}
+
+div {
+	display: flex;
+	gap: 5px;
+}
+
+canvas {
+	max-width: 60vw;
+	max-height: calc(100vh - 8vw);
+	width: auto;
+	height: auto;
+	flex-shrink: 1;
+	border-style: dotted;
+	border-width: 5px;
+	border-color: var(--black);
+
+	&:hover {
+		border-color: #0000;
+	}
+}
+
+textarea {
+	height: 100%;
+	resize: none;
+}
+
+a {
+	padding: 1vw;
+	border-radius: 1vw;
+	border-style: solid;
+	border-width: 5px;
+	border-color: var(--dark);
+	color: var(--white);
+	background-color: var(--dark);
+	&:hover {
+		border-color: var(--light);
+		color: var(--black);
+		background-color: var(--light);
+	}
+}
+
+input {
+	width: 100%;
+}
+
+textarea, input {
+	padding: 1vw;
+	border-radius: 1vw;
+	border-style: solid;
+	border-width: 5px;
+	border-color: var(--black);
+	color: var(--black);
+	background-color: var(--white);
+	&:hover {
+		border-color: var(--light);
+	}
+	&:focus {
+		box-shadow: inset 0 0 5px 1px var(--cyan);
+	}
+}
+
+#input {
+	height: 100%;
+	flex-grow: 1;
+	flex-direction: column;
+}
+
+#error {
+	position: absolute;
+	padding: 1vw;
+	display: none;
+	border-radius: 0.5vw;
+	background-color: var(--red);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--dark: #69c;
+		--medium: #369;
+		--light: #036;
+		--black: #69c;
+		--white: #000;
+		--red: #f66;
+		--cyan: #9cf;
+	}
+
+	body {
+		background-color: var(--white);
+	}
+
+	#error {
+		color: var(--white);
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	main {
+		flex-direction: column;
+	}
+	canvas {
+		max-width: calc(100vw - 8vw);
+		max-height: 60vh;
+	}
+	#input {
+		width: 100%;
+	}
+
+}
