@@ -66,6 +66,7 @@ canvas {
 textarea {
 	height: 100%;
 	resize: none;
+	text-wrap: nowrap;
 }
 
 input {
