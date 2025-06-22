@@ -2,8 +2,9 @@
 <html lang="de-CH">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="stylesheet.css" />
+<link rel="icon" href="favicon.png" />
 <title>SVG Downloader</title>
 </head>
 <body>
@@ -13,10 +14,10 @@
 <p id="error">Error</p>
 <textarea id="code">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-<rect width="100" height="100" fill="#fcc" />
-<rect x="5" y="5" width="50" height="50" rx="5" fill="#f99" />
-<rect x="25" y="25" width="50" height="50" rx="5" fill="#f66" />
-<rect x="45" y="45" width="50" height="50" rx="5" fill="#f33" />
+<rect width="100" height="100" fill="#9fc" />
+<rect x="5" y="5" width="50" height="50" rx="5" fill="#063" />
+<rect x="25" y="25" width="50" height="50" rx="5" fill="#396" />
+<rect x="45" y="45" width="50" height="50" rx="5" fill="#6c9" />
 </svg>
 </textarea>
 <div>
@@ -49,13 +50,13 @@ function drawCanvas() {
 	output.src = archive;
 	alert.textContent = "error";
 	alert.style.display = "inherit";
-	input.style.borderColor = "var(--red)";
+	input.style.borderColor = "var(--error)";
 	};
 
 	if (archive === data) {
 	alert.style.display = "none";
 	input.style.borderColor = "";
-	}
+	};
 
 	const ctx = canvas.getContext("2d");
 	output.onload = function() {
@@ -69,13 +70,13 @@ function drawCanvas() {
 
 function renderImage() {
 downloader.style.cursor = "wait";
-downloader.href = '#';
+downloader.href = "#";
 	canvas.toBlob(function(blob) {
 		if (blob) {
 		const imageFile = URL.createObjectURL(blob);
 		downloader.href = imageFile;
 		downloader.style.cursor = "revert";
-	        }
+	        };
 	});
 };
 

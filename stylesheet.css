@@ -3,13 +3,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100..900&display=swap");
 
 :root {
-	--dark: #036;
-	--medium: #69cc;
-	--light: #9cf;
+	--dark: #039;
+	--medium: #36c;
+	--light: #69f;
+	--accent: #36f;
 	--black: #000;
 	--white: #fff;
-	--red: #f66;
-	--cyan: #06f;
+	--error: #f66;
 	overscroll-behavior-y: none;
 	user-select: none;
 }
@@ -57,7 +57,6 @@ canvas {
 	border-style: dashed;
 	border-width: 5px;
 	border-color: var(--black);
-
 	&:hover {
 		border-color: #0000;
 	}
@@ -85,7 +84,7 @@ textarea, input {
 		border-color: var(--light);
 	}
 	&:focus {
-		box-shadow: inset 0 0 5px 1px var(--cyan);
+		box-shadow: inset 0 0 0.5vw 0 var(--accent);
 	}
 }
 
@@ -116,7 +115,7 @@ a {
 	padding: 0.5vw;
 	display: none;
 	border-radius: 0.5vw;
-	background-color: var(--red);
+	background-color: var(--error);
 	&:hover {
 		opacity: 25%;
 	}
@@ -124,25 +123,31 @@ a {
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--dark: #69c;
-		--medium: #369;
-		--light: #036;
-		--black: #69c;
-		--white: #000;
-		--red: #f66;
+		--dark: #003;
+		--medium: #039;
+		--light: #36c;
+		--accent: #69f;
 	}
 
-	body {
-		background-color: var(--white);
+	canvas {
+		border-color: var(--light);
 	}
 
 	textarea, input {
+		border-color: var(--light);
+		color: var(--white);
+		background-color: var(--black);
+		&:hover {
+			border-color: var(--accent);
+		}
 		&:focus {
-			box-shadow: inset 0 0 5px 1px var(--light);
+			box-shadow: inset 0 0 0.5vw 0 var(--medium);
 		}
 	}
-	#error {
-		color: var(--white);
+
+	a:hover {
+		border-color: var(--accent);
+		background-color: var(--accent);
 	}
 }
 
@@ -159,19 +164,11 @@ a {
 
 	textarea, input {
 		padding: 2vw;
-		border-radius: 1vw;
-		border-style: solid;
 		border-width: 2px;
-		&:focus {
-			border-color: var(--light);
-			box-shadow: revert;
-		}
 	}
 
 	a {
 		padding: 2vw;
-		border-radius: 1vw;
-		border-style: solid;
 		border-width: 2px;
 	}
 
