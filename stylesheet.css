@@ -54,7 +54,7 @@ canvas {
 	width: auto;
 	height: auto;
 	flex-shrink: 1;
-	border-style: dotted;
+	border-style: dashed;
 	border-width: 5px;
 	border-color: var(--black);
 
@@ -153,6 +153,7 @@ a {
 	canvas {
 		max-width: calc(100vw - 8vw);
 		max-height: 60vh;
+		border-width: 2px;
 	}
 
 	textarea, input {
